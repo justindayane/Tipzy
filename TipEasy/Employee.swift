@@ -68,5 +68,14 @@ class Staff {
     }
 }
 
+@Observable
+class Shift {
+    var members = [Employee]()
+    var totalHours: Int = 0
+    var hourlyFOH: Double = 1
+    var hourlyBOH: Double = 1
+    var totalCash: Double = 0
+}
+
 
 

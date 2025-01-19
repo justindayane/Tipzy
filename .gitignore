@@ -1,0 +1,3 @@
+# ignore all .a files (*.a)
+TipEasy.xcodeproj/
+TipEasy.xcodeproj/project.xcworkspace/xcuserdata/justindayane.xcuserdatad/UserInterfaceState.xcuserstate
