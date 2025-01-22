@@ -15,14 +15,18 @@ struct SummaryView: View {
             List {
                 ForEach(shift.members) { member in
                     HStack {
-                        VStack {
+                        VStack(alignment: .leading) {
                             Text(member.fname)
                                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             
                             Text(member.role)
                         }
                         Spacer()
-                        Text(String(member.takeHome))
+                        VStack{
+                            Text("$\(Int(member.takeHome))")
+                                .font(.title.bold())
+                            Text("\(member.hours) hours")
+                        }
                     }
                 }
             }

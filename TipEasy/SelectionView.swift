@@ -50,6 +50,15 @@ struct SelectionView: View {
         //This could be done onAppear()
         var fHours = 0
         var bHours = 0
+        // Another way to consider
+        var reducedFoh = shift.members.filter{ $0.role == "Bartender" || $0.role == "Server" }.reduce(0) { partialResult, m in
+            partialResult + m.hours
+        }
+        var reducedBoh = shift.members.filter{ $0.role == "Runner" || $0.role == "Barback" }.reduce(0) { partialResult, m in
+            partialResult + m.hours
+        }
+        print("reduced = \(reducedFoh) & \(reducedBoh)")
+        
         for member in shift.members {
             if member.role == "Bartender" || member.role == "Server" {
                 fHours += member.hours
@@ -57,6 +66,7 @@ struct SelectionView: View {
                 bHours += member.hours
             }
         }
+        print("F & B = \(fHours + bHours)")
         //print("In total, we had \(fHours) hours for FOH and \(bHours) hours for BOH")
         
         let fHourly = (shift.totalCash * 0.75) / Double(fHours)
@@ -73,10 +83,7 @@ struct SelectionView: View {
         for member in shift.members {
             print("\(member.fname) (\(member.role)) walks out with $\(member.takeHome) after working \(member.hours) hours")
         }
-        // Foh would have to be based on 75% of the money
-        // Boh 25%
-        // Foh Hourly would require knowing the total hours foh
-        // Hoh Hoursly would require knowing the total hours boh
+        
     }
 }
 
