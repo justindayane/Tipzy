@@ -4,21 +4,22 @@
 //
 //  Created by Justin Dayane  Gbadamassi on 1/8/25.
 //
-
+import SwiftData
 import SwiftUI
 
 struct ShiftView: View {
+    @Query var employees: [Employee]
     @State private var showingSelection = false
     @State private var amount = 0.0
     //@State private var selectedStaff: Staff
-    @Bindable var staff: Staff
     //New try
     @State private var shift = Shift()
     
     
     @State private var selectedID = Set<UUID>()
+    
     var selectedTeam: [Employee] {
-        staff.members.filter { selectedID.contains($0.id)}
+        employees.filter { selectedID.contains($0.id)}
     }
     
     var body: some View {
@@ -28,7 +29,7 @@ struct ShiftView: View {
                     .keyboardType(.decimalPad)
             }
             Section {
-                List(staff.members, selection:$selectedID){ member in
+                List(employees, selection:$selectedID){ member in
                     HStack{
                         Text(member.fname)
                         Spacer()
@@ -54,7 +55,7 @@ struct ShiftView: View {
             }
         }
         .sheet(isPresented: $showingSelection) {
-            SelectionView(shift: shift, staff: staff)
+            SelectionView(shift: shift)
         }
         
 //        Section {
@@ -66,5 +67,5 @@ struct ShiftView: View {
 }
 
 #Preview {
-    ShiftView(staff: Staff())
+    ShiftView()
 }

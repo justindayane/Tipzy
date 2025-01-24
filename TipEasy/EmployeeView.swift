@@ -4,17 +4,19 @@
 //
 //  Created by Justin Dayane  Gbadamassi on 1/7/25.
 //
-
+import SwiftData
 import SwiftUI
 
 struct EmployeeView: View {
-    var staff: Staff
+    @Environment(\.modelContext) var modelContext
+    @Query var employees: [Employee]
+    
     @State private var showingAddMember = false
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(staff.members) { member in
+                ForEach(employees) { member in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(member.fname)
@@ -34,17 +36,19 @@ struct EmployeeView: View {
                 }
             }
             .sheet(isPresented: $showingAddMember) {
-                AddView(staff: staff)
+                AddView()
             }
         }
     }
     //function used to remove items from a list of ForEach. Could be used to remove staff member from staff of the day or delete staff members permanently after an alert
-    func removeWorker(at offset: IndexSet) {
-        staff.members.remove(atOffsets: offset)
+    func removeWorker(at offsets: IndexSet) {
+        for offset in offsets {
+            modelContext.delete(employees[offset])
+        }
     }
 
 }
 
 #Preview {
-    EmployeeView(staff: Staff())
+    EmployeeView()
 }

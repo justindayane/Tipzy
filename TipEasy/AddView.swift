@@ -12,8 +12,8 @@ struct AddView: View {
     @State private var lastName = ""
     @State private var role = "Server"
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) var modelContext
     
-    var staff: Staff
     
     let roles = ["Server", "Bartender", "Runner", "Barback"]
     
@@ -38,7 +38,7 @@ struct AddView: View {
             .toolbar {
                 Button("Add") {
                     let member = Employee(fname: firstName, lname: lastName, role: role)
-                    staff.members.append(member)
+                    modelContext.insert(member)
                     firstName = ""
                     lastName = ""
                 }
@@ -49,5 +49,5 @@ struct AddView: View {
 
 
 #Preview {
-    AddView(staff: Staff())
+    AddView()
 }

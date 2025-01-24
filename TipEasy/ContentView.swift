@@ -5,16 +5,17 @@
 //  Created by Justin Dayane  Gbadamassi on 1/7/25.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-    @State private var staff = Staff()
+    @Environment(\.modelContext) var modelContext
     
     var body: some View {
         NavigationStack {
             NavigationLink {
 //                Text("This is where we will being seeing the whole staff list and add to the list if needed")
-                EmployeeView(staff: staff)
+                EmployeeView()
             } label: {
                 ZStack {
                     Rectangle()
@@ -25,7 +26,7 @@ struct ContentView: View {
                 .padding()
             }
             NavigationLink {
-                ShiftView(staff: staff)
+                ShiftView()
             } label: {
                 ZStack {
                     Rectangle()
@@ -46,7 +47,7 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .navigationTitle("TipEasy")
+            .navigationTitle("TipZy")
         }
         .padding()
         
