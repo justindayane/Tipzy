@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct SummaryView: View {
+    @Environment(\.modelContext) var modelContext
+    @Environment(\.dismiss) var dismiss
+    @State private var showingConfirmationAlert = false
+    
     var shift: Shift
     
     var body: some View {
@@ -28,6 +32,17 @@ struct SummaryView: View {
                             Text("\(member.hours) hours")
                         }
                     }
+                }
+            }
+            .toolbar {
+                Button("Save shift") {
+                    modelContext.insert(shift)
+                    showingConfirmationAlert = true
+                }
+            }
+            .alert("Shift Saved", isPresented: $showingConfirmationAlert) {
+                Button("OK") {
+                    dismiss()
                 }
             }
         }

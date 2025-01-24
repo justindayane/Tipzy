@@ -14,6 +14,6 @@ struct TipEasyApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Employee.self)
+        .modelContainer(for: [Employee.self, Shift.self])
     }
 }

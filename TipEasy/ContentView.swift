@@ -37,6 +37,17 @@ struct ContentView: View {
                 .padding()
             }
             NavigationLink {
+                ShiftHistoryView()
+            } label: {
+                ZStack {
+                    Rectangle()
+                        .frame(width: 300, height:100)
+                    Text("Shift History")
+                        .foregroundStyle(.white)
+                }
+                .padding()
+            }
+            NavigationLink {
                 ExtraView()
             } label: {
                 ZStack {

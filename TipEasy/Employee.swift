@@ -79,13 +79,23 @@ class Employee {
 //    }
 //}
 
-@Observable
+@Model
 class Shift {
+    //var date: Date
     var members = [Employee]()
     var totalHours: Int = 0
     var hourlyFOH: Double = 1
     var hourlyBOH: Double = 1
     var totalCash: Double = 0
+    
+    init(members: [Employee] = [Employee](), totalHours: Int = 0, hourlyFOH: Double = 1, hourlyBOH: Double = 1, totalCash: Double = 0) {
+        //self.date = .now
+        self.members = members
+        self.totalHours = totalHours
+        self.hourlyFOH = hourlyFOH
+        self.hourlyBOH = hourlyBOH
+        self.totalCash = totalCash
+    }
 }
 
 
