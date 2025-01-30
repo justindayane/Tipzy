@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmployeeView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var employees: [Employee]
+    @Query(sort: [SortDescriptor(\Employee.role)]) var employees: [Employee]
     
     @State private var showingAddMember = false
     

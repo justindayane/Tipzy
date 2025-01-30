@@ -8,7 +8,7 @@ import SwiftData
 import SwiftUI
 
 struct ShiftView: View {
-    @Query var employees: [Employee]
+    @Query(sort: [SortDescriptor(\Employee.role)]) var employees: [Employee]
     @State private var showingSelection = false
     @State private var amount = 0.0
     //@State private var selectedStaff: Staff
@@ -36,9 +36,8 @@ struct ShiftView: View {
                         Text(member.role)
                     }
                 }
-                .toolbar {
-                    EditButton()
-                }
+                .environment(\.editMode, .constant(.active)) //permanently in edit mode
+                
                 Text("You selected \(selectedID.count) staff member")
                 Button("Staff Selection") {
                     print("shift staff initial -\n \(shift.members)")
@@ -58,11 +57,11 @@ struct ShiftView: View {
             SelectionView(shift: shift)
         }
         
-//        Section {
-//            NavigationLink ("New Shift Selection"){
-//                SelectionView(shift: shift, staff: staff)
-//            }
-//        }
+        Section {
+            NavigationLink ("New Shift Selection"){
+                SelectionView(shift: shift)
+            }
+        }
     }
 }
 

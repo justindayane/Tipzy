@@ -19,8 +19,8 @@ struct ShiftHistoryView: View {
                         Text("Shift Details View")
                     } label: {
                         HStack {
-                            VStack(alignment: .leading) {
-                                Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                            VStack (alignment: .leading){
+                                Text(shift.date.formatted(date: .abbreviated, time: .omitted))
                                     .font(.headline)
                                 Text("\(shift.members.count) members")
                                     .font(.subheadline)
@@ -28,7 +28,7 @@ struct ShiftHistoryView: View {
                             
                             Spacer()
                             Text("$\(Int(shift.totalCash))")
-                                .font(.title.bold())
+                                .font(.title3)
                         }
                     }
                 }
